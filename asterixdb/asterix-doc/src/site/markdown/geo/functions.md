@@ -170,11 +170,11 @@ input is supported for certain functions and is represented internally in the co
 ### st_area ###
 * Syntax:
     ```SQL
-    st_area(geom_object);
+    st_area(geom_polygon);
     ```
-* Calculates the area of a Polygon or MultiPolygon. For geometry, a 2D Cartesian area is determined with units specified by the SRID. For geography, area is determined on a curved surface with units in square meters.
+* Calculates the area of a `Polygon` or `MultiPolygon`. For geometry, a 2D Cartesian area is determined with units specified by the SRID.
 * Arguments:
-    * `geom_object`: a `geometry` object to calculate the area of its surface.
+    * `geom_polygon`: a `geometry` object of type `Polygon`/`MultiPolygon`/`GeometryCollection` to calculate the area of its surface.
 * Return Value:
     * a `double` value;
         * The area of the surface of the argument if it is a `Polygon`/`MultiPolygon`.
@@ -348,12 +348,13 @@ input is supported for certain functions and is represented internally in the co
     ```SQL
     st_x/st_y/st_z/st_m(geom_point)
     ```
-* Returns the X/Y/Z/M coordinate of `geom_point`, or NULL if not available. Input must be a point.
+* Returns the X/Y/Z/M coordinate of `geom_point`, or `NULL` if not available. Input must be a point.
 * Arguments:
     * `geom_point`: a `geometry` object of type `Point`.
 * Return Value:
     * a `double` representing the X/Y/Z/M coordinate.
-    * `NULL` if the coordinate doesn't exist. (e.g., M-coordinate in 2D point)
+    * `NULL` if the coordinate doesn't exist. (e.g., finding the M-coordinate of a 2D point)
+        > Note: st_make_point throws an error for missing/null X or Y values.
 * Example:
     ```SQL
     st_x(st_make_point(1, 2, 3, 4));
@@ -409,7 +410,7 @@ input is supported for certain functions and is represented internally in the co
     ```SQL
     st_as_binary(geom_object)
     ```
-* Returns the Well-Known Binary (WKB) representation of the `geometry`/geography without the SRID meta data.
+* Returns the Well-Known Binary (WKB) representation of the `geometry`.
 * Arguments:
     * `geom_object`: a `geometry` object.
 * Return Value:
@@ -449,10 +450,10 @@ input is supported for certain functions and is represented internally in the co
     ```SQL
     st_distance(g1, g2)
     ```
-* For `geometry` type returns the 2D Cartesian distance between two geometries in projected units (based on the spatial reference). For `geography` type defaults to return the minimum geodesic distance between two geographies in meters.
+* For `geometry` type returns the 2D Cartesian distance between two geometries in projected units (based on the spatial reference).
 * Arguments:
-    * `g1`: a `geometry`/`geography` object.
-    * `g2`: a `geometry`/`geography` object.
+    * `g1`: a `geometry` object.
+    * `g2`: a `geometry` object.
 * Return Type:
     * `double`
 
@@ -471,8 +472,7 @@ input is supported for certain functions and is represented internally in the co
     ```SQL
     st_length(geom_line)
     ```
-* Returns the 2D length of the `geom_line` if it is a `LineString`/`MultiLineString`. 
-<!-- For geometry are in units of spatial reference and geography are in meters (default spheroid). -->
+* Returns the 2D length of the `geom_line` if it is a `LineString`/`MultiLineString` in units of spatial reference.
 * Arguments:
     * `geom_line`: a `geometry` object of type `LineString`/`MultiLineString`.
 * Return:
@@ -496,8 +496,8 @@ input is supported for certain functions and is represented internally in the co
     ```
 * Returns `true` if `g1` and `g2` spatially intersect in 2D.
 * Arguments:
-    * `g1`: a geometry/geography object.
-    * `g2`: a geometry/geography object.
+    * `g1`: a `geometry` object.
+    * `g2`: a `geometry` object.
 * Return Value:
     * `true` if objects intersect,
     * `false` otherwise.
