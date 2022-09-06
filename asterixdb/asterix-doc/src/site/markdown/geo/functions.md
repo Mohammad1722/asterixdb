@@ -17,12 +17,12 @@
  ! under the License.
  !-->
 
-# Support the standard GIS objects (DRAFT) #
+# Support the standard GIS objects #
 ## <a id="toc">Table of Contents</a> ##
 
 * [Introduction](#Introduction)
-* [Construction functions](#construction)
-* [Primitive functions](#primitive)
+* [Construction Functions](#construction)
+* [Primitive Functions](#primitive)
 * [Spatial Predicate](#predicate)
 * [Spatial Analysis](#analysis)
 * [Spatial Aggregates](#aggregate)
@@ -48,7 +48,7 @@ CREATE DATASET Geometries (GeometryType) PRIMARY KEY id;
 Please note that even though the [SRID](http://desktop.arcgis.com/en/arcmap/10.3/manage-data/using-sql-with-gdbs/what-is-an-srid.htm)
 input is supported for certain functions and is represented internally in the correct manner the serialized result (printed in the output) displays the SRID as 4326 always because of the limitations in Esri API.
 
-## <a id="construction">Construction functions</a>
+## <a id="construction">Construction Functions</a>
 
 ### st_make_point ###
 
@@ -165,7 +165,7 @@ input is supported for certain functions and is represented internally in the co
     ```
 
 
-## <a id="primitive">Primitive functions</a>
+## <a id="primitive">Primitive Functions</a>
 
 ### st_area ###
 * Syntax:
