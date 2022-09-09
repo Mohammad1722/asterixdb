@@ -17,7 +17,7 @@
  ! under the License.
  !-->
 
-# Getting Started with GIS in AsterixDB (DRAFT) #
+# Getting Started with GIS in AsterixDB #
 ## <a id="toc">Table of Contents</a> ##
 
 * [Introduction](#Introduction)
@@ -134,7 +134,7 @@ Running the query above will list all of the data in your newly created dataset,
 * coordinates  
     This is a list of the coordinates of the vertices of geometric object. Coordinates may be 2D, 3D, or 4D where the 3rd and 4th dimensions are optional and referred to as Z and M respectively.
 * crs  
-    CRS stands for coordinate reference system and it is a framework used to precisely measure locations on the surface of the Earth as coordinates.This is usually assigned automatically but you can specify the CRS of a `geometry` object on construction as well. You can find more information about CRS [here](https://en.wikipedia.org/wiki/Spatial_reference_system).
+    CRS stands for coordinate reference system.This is usually assigned automatically as `EPSG:4326` but you can specify the CRS of a `geometry` object on construction as well.
 
 
 ## <a id="query2">Spatial Analysis Functions</a>
